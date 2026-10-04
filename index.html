@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Turing Machine Simulator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Turing Machine Simulator</h1>
+
+        <p>
+            Theory of Computation - Interactive Learning Platform
+        </p>
+    </header>
+    <section class="dashboard">
+
+    <div class="dashboard-content">
+
+        <h2>Welcome to Turing Machine Simulator</h2>
+
+        <p>
+            Explore the working of Turing Machines through interactive
+            simulations, step-by-step execution, and transition tables.
+        </p>
+
+        <div class="dashboard-stats">
+
+            <div class="stat-card">
+                <h3>4</h3>
+                <p>Available Machines</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Interactive</h3>
+                <p>Step-by-Step Learning</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Live</h3>
+                <p>Tape Visualization</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h2 class="machine-heading">Explore Our Machines</h2>
+
+    <div class="machine-cards">
+
+        <div class="machine-card">
+            <h3>01. Even-Zero Checker</h3>
+            <p>Checks whether a binary string contains an even number of zeros.</p>
+            <button onclick="selectMachine('even')">Explore Machine</button>
+        </div>
+
+        <div class="machine-card">
+            <h3>02. Binary Incrementer</h3>
+            <p>Adds one to a binary number using carry operations.</p>
+            <button onclick="selectMachine('increment')">Explore Machine</button>
+        </div>
+
+        <div class="machine-card">
+            <h3>03. Unary Addition</h3>
+            <p>Adds two unary numbers using a Turing Machine.</p>
+            <button onclick="selectMachine('addition')">Explore Machine</button>
+        </div>
+
+        <div class="machine-card">
+            <h3>04. Palindrome Checker</h3>
+            <p>Checks whether a binary string reads the same in both directions.</p>
+            <button onclick="selectMachine('palindrome')">Explore Machine</button>
+        </div>
+
+    </div>
+
+</section>
+
+    <main class="container">
+
+        <section class="panel">
+
+            <h2>Machine Configuration</h2>
+
+            <label>Select Machine</label>
+
+            <select id="machine">
+
+                <option value="even">
+                    Binary Even-Zero Checker
+                </option>
+
+                <option value="increment">
+                    Binary Incrementer
+                </option>
+
+                <option value="addition">
+                    Unary Addition
+                </option>
+                <option value="palindrome">
+                    Binary Palindrome Checker
+                </option>
+
+            </select>
+
+            <label>Input String</label>
+
+            <input type="text"
+                   id="inputString"
+                   placeholder="Enter input string">
+
+            <div class="buttons">
+
+                <button onclick="startMachine()">
+                    Start
+                </button>
+
+                <button onclick="nextStep()">
+                    Next Step
+                </button>
+
+                <button onclick="runMachine()">
+                    Run All
+                </button>
+
+                <button onclick="resetMachine()">
+                    Reset
+                </button>
+
+            </div>
+
+        </section>
+        <section class="panel">
+
+    <h2>Machine Explanation</h2>
+
+    <div id="machineExplanation">
+        Select a machine to view its explanation.
+    </div>
+
+</section>
+
+        <section class="panel">
+
+            <h2>Machine Status</h2>
+
+            <div class="status-grid">
+
+                <div>
+                    <span>Current State</span>
+                    <strong id="state">-</strong>
+                </div>
+
+                <div>
+                    <span>Head Position</span>
+                    <strong id="head">-</strong>
+                </div>
+
+                <div>
+                    <span>Steps</span>
+                    <strong id="steps">0</strong>
+                </div>
+
+                <div>
+                    <span>Result</span>
+                    <strong id="result">Waiting</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="panel">
+
+            <h2>Turing Machine Tape</h2>
+
+            <div id="tape" class="tape">
+                <p>Start the machine to view the tape</p>
+            </div>
+
+            <p id="headLabel" class="head-label"></p>
+
+        </section>
+
+        <section class="panel">
+
+            <h2>Transition Information</h2>
+
+            <div id="transitionInfo">
+                No transition performed yet.
+            </div>
+
+        </section>
+        <section class="panel">
+
+    <h2>Transition Table</h2>
+
+    <div class="table-wrapper">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Current State</th>
+                    <th>Read</th>
+                    <th>Next State</th>
+                    <th>Write</th>
+                    <th>Move</th>
+                </tr>
+            </thead>
+
+            <tbody id="transitionTable"></tbody>
+        </table>
+
+    </div>
+
+</section>
+<section class="panel">
+
+    <h2>Step Explanation</h2>
+
+    <div id="stepExplanation">
+        Start the machine to see the step-by-step explanation.
+    </div>
+
+</section>
+
+        <section class="panel">
+
+            <h2>Transition History</h2>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Step</th>
+                            <th>State</th>
+                            <th>Read</th>
+                            <th>Write</th>
+                            <th>Move</th>
+                            <th>Next State</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="history"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>TOC Micro Project | Turing Machine Simulator</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
